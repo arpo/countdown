@@ -1,7 +1,7 @@
 var log = function (m) {
 	if(console) console.log(m);
 };
-var NIBS = window.NIBS || {};
+var MOS = window.MOS || {};
 
 /**
  * Create and handle countdown to a specific time and date. Can handle multiple events. Requires jQuery.
@@ -34,7 +34,7 @@ var NIBS = window.NIBS || {};
 
 	* And the JavaScript can look like this:
 
-	NIBS.countdown.setup({
+	MOS.countdown.setup({
 		target: {
 			'evName': '#evName',
 			'days': '#days',
@@ -44,7 +44,7 @@ var NIBS = window.NIBS || {};
 		}
 	});
 
-	NIBS.countdown.add({
+	MOS.countdown.add({
 		name: 'Julafton',
 		date: [2013, 12, 24, 0, 10],
 		onEvent: function (eventObj) {
@@ -53,12 +53,12 @@ var NIBS = window.NIBS || {};
 	});
  *
  * @version 1.0
- * @class NIBS.countdown
+ * @class MOS.countdown
  * @author Mattias Johansson
  * @requires jQuery
  **/
 
-NIBS.countdown = (function () {
+MOS.countdown = (function () {
 
 	///////////////////////////////////////////////////////////////////////
 	// Private methods & properties
@@ -156,7 +156,7 @@ NIBS.countdown = (function () {
 			seconds: jQuery selctors to elements to display seconds left in
 			evName: jQuery selctors to elements to display name of event in
 	 * @example
-		NIBS.countdown.setup({
+		MOS.countdown.setup({
 			target: {
 				'evName': '#evName',
 				'days': '#days',
@@ -182,7 +182,7 @@ NIBS.countdown = (function () {
 	 * @method _add
 	 * @param event {Object} An object describing the event.
 	 * @example
-		NIBS.countdown.add({
+		MOS.countdown.add({
 			name: 'Julafton',
 			date: [2017, 12, 24, 0, 10],
 			onEvent: function (eventObj) {
@@ -326,7 +326,7 @@ NIBS.countdown = (function () {
 	 * List all events. Run it from the consol.
 	 * @method _list
 	 * @example
-		NIBS.countdown.list();
+		MOS.countdown.list();
 	 **/
 
 	function _list() {
@@ -345,43 +345,43 @@ NIBS.countdown = (function () {
 		/**
 		 * Public function:
 		 * Calles the private function _setup.
-		 * @method NIBS.countdown.setup
+		 * @method MOS.countdown.setup
 		 **/
 		setup: _setup,
 		/**
 		 * Public function:
 		 * Calles the private function _start.
-		 * @method NIBS.countdown.start
+		 * @method MOS.countdown.start
 		 **/
 		start: _start,
 		/**
 		 * Public function:
 		 * Calles the private function _stop.
-		 * @method NIBS.countdown.stop
+		 * @method MOS.countdown.stop
 		 **/
 		stop: _stop,
 		/**
 		 * Public function:
 		 * Calles the private function _add.
-		 * @method NIBS.countdown.add
+		 * @method MOS.countdown.add
 		 **/
 		add: _add,
 		/**
 		 * Public function:
 		 * Calles the private function _clear.
-		 * @method NIBS.countdown.clear
+		 * @method MOS.countdown.clear
 		 **/
 		clear: _clear,
 		/**
 		 * Public function:
 		 * Calles the private function _tgif.
-		 * @method NIBS.countdown.tgif
+		 * @method MOS.countdown.tgif
 		 **/
 		tgif: _tgif,
 		/**
 		 * Public function:
 		 * Calles the private function _list.
-		 * @method NIBS.countdown.list
+		 * @method MOS.countdown.list
 		 **/
 		list: _list
 	};

@@ -50,19 +50,17 @@
 
 	<input type="button" id="addBtn" name="addBtn" value="Add">
 
-
-
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="NIBS.countdown.js"></script>
+	<script type="text/javascript" src="MOS.countdown.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 
 
 			$(document.body).on('click', '#addBtn', function (e) {
 				e.preventDefault();
-				NIBS.countdown.add({
-					name: 'My added event',
-					date: [2015, 8, 16, 16, 07],
+				MOS.countdown.add({
+					name: 'My Event',
+					date: [2025, 8, 16, 16, 07],
 					onEvent: function (eventObj) {
 						log(eventObj.name + ' is here!');
 					},
@@ -73,7 +71,7 @@
 				});
 			});
 
-			NIBS.countdown.setup({
+			MOS.countdown.setup({
 				target: {
 					'evName': '#evName',
 					'days': '#days',
@@ -83,23 +81,23 @@
 				}
 			});
 
-			NIBS.countdown.add({
+			MOS.countdown.add({
 				name: 'My vacation starts',
-				date: [2015, 7, 10, 17, 0],
+				date: [2019, 7, 10, 17, 0],
 				onEvent: function (eventObj) {
 					log(eventObj.name + ' is here!');
 				}
 			});
 
-			// NIBS.countdown.add({
-			// 	name: 'Weekend',
-			// 	date: NIBS.countdown.tgif(),
-			// 	onEvent: function (eventObj) {
-			// 		log(eventObj.name + ' is here!');
-			// 	}
-			// });
+			MOS.countdown.add({
+				name: 'Weekend',
+				date: MOS.countdown.tgif(),
+				onEvent: function (eventObj) {
+					log(eventObj.name + ' is here!');
+				}
+			});
 
-			NIBS.countdown.start();
+			MOS.countdown.start();
 		});
 	</script>
 </body>
