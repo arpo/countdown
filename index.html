@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Countdown</title>
+	<style>
+		body{
+			font-family:sans-serif;
+			margin: 10px;
+		}
+		#evName {
+			text-align: center;
+			width: 200px;
+		}
+		.CDRow span {
+			width: 100px;
+			display: inline-block;
+		}
+
+		.CDRow span div{
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="cdCont">
+		<div id="evName"></div>
+		<div class="CDRow">
+			<span>
+				<div id="days"></div>
+				<div>Days</div>
+			</span>
+			<span>
+				<div id="hours"></div>
+				<div>Hours</div>
+			</span>
+		</div>
+		<div class="CDRow">
+			<span>
+				<div id="minutes"></div>
+				<div>Minutes</div>
+			</span>
+			<span>
+				<div id="seconds"></div>
+				<div>Seconds</div>
+			</span>
+		</div>
+	</div>
+
+	<input type="button" id="addBtn" name="addBtn" value="Add">
+
+
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="NIBS.countdown.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+
+			$(document.body).on('click', '#addBtn', function (e) {
+				e.preventDefault();
+				NIBS.countdown.add({
+					name: 'My added event',
+					date: [2015, 8, 16, 16, 07],
+					onEvent: function (eventObj) {
+						log(eventObj.name + ' is here!');
+					},
+					onCountdownStart: function (eventObj) {
+						log(eventObj.name + ' countdown started');
+					},
+					data: {info: 'Extar info'}
+				});
+			});
+
+			NIBS.countdown.setup({
+				target: {
+					'evName': '#evName',
+					'days': '#days',
+					'hours': '#hours',
+					'minutes': '#minutes',
+					'seconds': '#seconds'
+				}
+			});
+
+			NIBS.countdown.add({
+				name: 'My vacation starts',
+				date: [2015, 7, 10, 17, 0],
+				onEvent: function (eventObj) {
+					log(eventObj.name + ' is here!');
+				}
+			});
+
+			// NIBS.countdown.add({
+			// 	name: 'Weekend',
+			// 	date: NIBS.countdown.tgif(),
+			// 	onEvent: function (eventObj) {
+			// 		log(eventObj.name + ' is here!');
+			// 	}
+			// });
+
+			NIBS.countdown.start();
+		});
+	</script>
+</body>
+</html>
