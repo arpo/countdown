@@ -150,7 +150,6 @@ NIBS.countdown = (function () {
 	 * Setup countdown environment.
 	 * @method _setup
 	 * @param initObj {Object} Object with strings with jQuery selctors to elements to display countdown info on. 
-
 			days: jQuery selctors to elements to display days left in
 			hours: jQuery selctors to elements to display hours left in
 			minutes: jQuery selctors to elements to display minutes left in
