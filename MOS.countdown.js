@@ -1,6 +1,3 @@
-var log = function (m) {
-	if(console) console.log(m);
-};
 var MOS = window.MOS || {};
 
 /**
@@ -48,7 +45,7 @@ var MOS = window.MOS || {};
 		name: 'Julafton',
 		date: [2013, 12, 24, 0, 10],
 		onEvent: function (eventObj) {
-			log(eventObj.name + ' is here!');
+			console.log(eventObj.name + ' is here!');
 		}
 	});
  *
@@ -123,8 +120,8 @@ MOS.countdown = (function () {
 	 **/
 
 	function _start() {
-		if(_events.length === 0) {
-			log('No events found');
+		if (_events.length === 0) {
+			console.log('No events found');
 			return;
 		}
 		_currentEvents = _events[0];
@@ -186,7 +183,7 @@ MOS.countdown = (function () {
 			name: 'Julafton',
 			date: [2017, 12, 24, 0, 10],
 			onEvent: function (eventObj) {
-				log(eventObj.name + ' is here!');
+				console.log(eventObj.name + ' is here!');
 			}
 		});
 	 **/
@@ -204,15 +201,15 @@ MOS.countdown = (function () {
 		tmpEv.setSeconds(0);
 		event.time = tmpEv;
 
-		if(!event.onCountdownStart) {
+		if (!event.onCountdownStart) {
 			event.onCountdownStart = function () {};
 		}
 
 		var len = _events.length,
 			i;
-		for(i = 0; i < len; i += 1) {
+		for (i = 0; i < len; i += 1) {
 
-			if(_events[i].time.toString() === event.time.toString()) {
+			if (_events[i].time.toString() === event.time.toString()) {
 				doAdd = false;
 				oldEventsName = _events[i].name;
 				_events[i].name = event.name;
@@ -221,21 +218,21 @@ MOS.countdown = (function () {
 			}
 		}
 
-		if(doAdd) {
-			if(tmpEv > nowDate) { //Only add events that hasen't occur
+		if (doAdd) {
+			if (tmpEv > nowDate) { //Only add events that hasen't occur
 				_events.push(event);
 				_events = _sortByDate(_events);
-				if(_timer) { //Count down is running
+				if (_timer) { //Count down is running
 					_currentEvents = _events[0];
 					$evName.html(_currentEvents.name);
 					_actions();
 				}
 
 			} else {
-				log('\'' + event.name + '\' not added. Date has already occurred.');
+				console.log('\'' + event.name + '\' not added. Date has already occurred.');
 			}
 		} else {
-			log('Doublet found. \'' + oldEventsName + '\' replaced wirh \'' + event.name + '\'.');
+			console.log('Doublet found. \'' + oldEventsName + '\' replaced wirh \'' + event.name + '\'.');
 		}
 	}
 
@@ -289,7 +286,7 @@ MOS.countdown = (function () {
 
 	function _actions() {
 
-		if(_lastcurrentEvents.time.toString() !== _currentEvents.time.toString()) {
+		if (_lastcurrentEvents.time.toString() !== _currentEvents.time.toString()) {
 			$evName.html(_currentEvents.name);
 			_currentEvents.onCountdownStart(_currentEvents);
 		}
@@ -298,20 +295,20 @@ MOS.countdown = (function () {
 
 		var remainingTime = _getRemainingTime(_currentEvents);
 
-		if(remainingTime.sum === 0) { //Event occur
+		if (remainingTime.sum === 0) { //Event occur
 			$seconds.html(0);
 			_currentEvents.onEvent(_currentEvents);
-		} else if(remainingTime.sum > 0) { //Still counting down
-			if($days) {
+		} else if (remainingTime.sum > 0) { //Still counting down
+			if ($days) {
 				$days.html(remainingTime.days);
 			}
-			if($hours) {
+			if ($hours) {
 				$hours.html(remainingTime.hours);
 			}
-			if($minutes) {
+			if ($minutes) {
 				$minutes.html(remainingTime.minutes);
 			}
-			if($seconds) {
+			if ($seconds) {
 				$seconds.html(remainingTime.seconds);
 			}
 		} else { //Event has happened
@@ -332,10 +329,10 @@ MOS.countdown = (function () {
 	function _list() {
 		var len = _events.length,
 			i, out = '';
-		for(i = 0; i < len; i += 1) {
+		for (i = 0; i < len; i += 1) {
 			out += _events[i].name + ' ' + _events[i].time + '\n'
 		}
-		log(out);
+		console.log(out);
 	}
 
 	///////////////////////////////////////////////////////////////////////

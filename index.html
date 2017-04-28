@@ -62,10 +62,10 @@
 					name: 'My Event',
 					date: [2025, 8, 16, 16, 07],
 					onEvent: function (eventObj) {
-						log(eventObj.name + ' is here!');
+						console.log(eventObj.name + ' is here!');
 					},
 					onCountdownStart: function (eventObj) {
-						log(eventObj.name + ' countdown started');
+						console.log(eventObj.name + ' countdown started');
 					},
 					data: {info: 'Extar info'}
 				});
@@ -85,7 +85,7 @@
 				name: 'My vacation starts',
 				date: [2019, 7, 10, 17, 0],
 				onEvent: function (eventObj) {
-					log(eventObj.name + ' is here!');
+					console.log(eventObj.name + ' is here!');
 				}
 			});
 
@@ -93,7 +93,7 @@
 				name: 'Weekend',
 				date: MOS.countdown.tgif(),
 				onEvent: function (eventObj) {
-					log(eventObj.name + ' is here!');
+					console.log(eventObj.name + ' is here!');
 				}
 			});
 
