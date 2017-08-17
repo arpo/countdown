@@ -71,6 +71,28 @@
 				});
 			});
 
+			var onready = function () {
+
+				MOS.countdown.add({
+					name: 'My vacation starts',
+					date: [2017, 8, 17, 15, 0],
+					onEvent: function (eventObj) {
+						console.log(eventObj.name + ' is here!');
+					}
+				});
+
+				MOS.countdown.add({
+					name: 'Weekend',
+					date: MOS.countdown.tgif(),
+					onEvent: function (eventObj) {
+						console.log(eventObj.name + ' is here!');
+					}
+				});
+
+				MOS.countdown.start();
+
+			};
+
 			MOS.countdown.setup({
 				target: {
 					'evName': '#evName',
@@ -78,26 +100,11 @@
 					'hours': '#hours',
 					'minutes': '#minutes',
 					'seconds': '#seconds'
-				}
+				},
+				zone: 'Europe/Zurich', //https://github.com/davidayalas/current-time
+				onready: onready
 			});
 
-			MOS.countdown.add({
-				name: 'My vacation starts',
-				date: [2019, 7, 10, 17, 0],
-				onEvent: function (eventObj) {
-					console.log(eventObj.name + ' is here!');
-				}
-			});
-
-			MOS.countdown.add({
-				name: 'Weekend',
-				date: MOS.countdown.tgif(),
-				onEvent: function (eventObj) {
-					console.log(eventObj.name + ' is here!');
-				}
-			});
-
-			MOS.countdown.start();
 		});
 	</script>
 </body>

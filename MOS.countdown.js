@@ -66,6 +66,7 @@ MOS.countdown = (function () {
 		$minutes,
 		$seconds,
 		$evName,
+		_timezoneData,
 		_currentEvents,
 		_lastcurrentEvents = {
 			time: ''
@@ -165,11 +166,26 @@ MOS.countdown = (function () {
 	 **/
 
 	function _setup(initObj) {
-		$days = $(initObj.target.days);
-		$hours = $(initObj.target.hours);
-		$minutes = $(initObj.target.minutes);
-		$seconds = $(initObj.target.seconds);
-		$evName = $(initObj.target.evName);
+
+		if (!initObj.zone) {
+			initObj.zone = 'Europe/London'; //GMT, https://github.com/davidayalas/current-time
+		}
+
+		$.getJSON('https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=' + initObj.zone).done(function(response, status, XHR) {
+
+			_timezoneData = response;
+			$days = $(initObj.target.days);
+			$hours = $(initObj.target.hours);
+			$minutes = $(initObj.target.minutes);
+			$seconds = $(initObj.target.seconds);
+			$evName = $(initObj.target.evName);
+
+			initObj.onready();
+			
+		}).fail(function(XHR, status, error) {
+			console.log('Can\'t load Timezone data.');
+		});
+		
 	}
 
 
@@ -189,10 +205,12 @@ MOS.countdown = (function () {
 	 **/
 
 	function _add(event) {
+
 		var tmpEv = new Date(),
-			nowDate = new Date(),
+			nowDate = _getNowDate(),
 			doAdd = true,
 			oldEventsName;
+
 		tmpEv.setYear(event.date[0]);
 		tmpEv.setMonth(event.date[1] - 1);
 		tmpEv.setDate(event.date[2]);
@@ -261,7 +279,7 @@ MOS.countdown = (function () {
 			days,
 			nowDate;
 
-		nowDate = new Date();
+		nowDate = _getNowDate();
 		timestamp = Math.floor((event.time.getTime() - nowDate.getTime()) / 1000);
 		timestamp = Number(timestamp);
 		seconds = timestamp % 60;
@@ -333,6 +351,16 @@ MOS.countdown = (function () {
 			out += _events[i].name + ' ' + _events[i].time + '\n'
 		}
 		console.log(out);
+	}
+
+	function _getNowDate() {
+
+		var rv = new Date(),
+			diff = rv.getHours() - _timezoneData.hours;
+
+		rv.setHours(rv.getHours() - diff);
+		return rv;
+
 	}
 
 	///////////////////////////////////////////////////////////////////////

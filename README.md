@@ -32,20 +32,36 @@ HTML looks like this:
 
 And the JavaScript can look like this:
 
-	NIBS.countdown.setup({
+	var onready = function () {
+
+		MOS.countdown.add({
+			name: 'My vacation starts',
+			date: [2017, 6, 17, 17, 0],
+			onEvent: function (eventObj) {
+				console.log(eventObj.name + ' is here!');
+			}
+		});
+
+		MOS.countdown.add({
+			name: 'Weekend',
+			date: MOS.countdown.tgif(),
+			onEvent: function (eventObj) {
+				console.log(eventObj.name + ' is here!');
+			}
+		});
+
+		MOS.countdown.start();
+
+	};
+
+	MOS.countdown.setup({
 		target: {
 			'evName': '#evName',
 			'days': '#days',
 			'hours': '#hours',
 			'minutes': '#minutes',
 			'seconds': '#seconds'
-		}
-	});
-
-	NIBS.countdown.add({
-		name: 'Julafton',
-		date: [2013, 12, 24, 0, 10],
-		onEvent: function (eventObj) {
-			log(eventObj.name + ' is here!');
-		}
+		},
+		zone: 'Europe/Stockholm', //https://github.com/davidayalas/current-time
+		onready: onready
 	});
