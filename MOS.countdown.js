@@ -348,7 +348,7 @@ MOS.countdown = (function () {
 		var len = _events.length,
 			i, out = '';
 		for (i = 0; i < len; i += 1) {
-			out += _events[i].name + ' ' + _events[i].time + '\n'
+			out += _events[i].name + ' ' + _events[i].time + '\n';
 		}
 		console.log(out);
 	}
@@ -356,10 +356,17 @@ MOS.countdown = (function () {
 	function _getNowDate() {
 
 		var rv = new Date(),
-			diff = rv.getHours() - _timezoneData.hours;
+			newDateObj,
+			diffH = rv.getHours() - _timezoneData.hours,
+			diffMin = rv.getMinutes() - _timezoneData.minutes,
+			minTot = diffH * 60 + diffMin;
 
-		rv.setHours(rv.getHours() - diff);
-		return rv;
+		if (minTot > 0) {
+			newDateObj = new Date(rv.getTime() - minTot * 60000);
+		} else {
+			newDateObj = new Date(rv.getTime() + minTot * 60000);
+		}		
+		return newDateObj;
 
 	}
 
