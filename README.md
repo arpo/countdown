@@ -35,8 +35,8 @@ And the JavaScript can look like this:
 	var onready = function () {
 
 		MOS.countdown.add({
-			name: 'My vacation starts',
-			date: [2017, 6, 17, 17, 0],
+			name: 'The singularity is here',
+			date: [2045, 1, 1, 0, 0],
 			onEvent: function (eventObj) {
 				console.log(eventObj.name + ' is here!');
 			}

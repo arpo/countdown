@@ -74,20 +74,22 @@
 			var onready = function () {
 
 				MOS.countdown.add({
-					name: 'My vacation starts',
-					date: [2019, 8, 17, 15, 0],
+					name: 'The singularity is here',
+					date: [2045, 1, 1, 0, 0],
 					onEvent: function (eventObj) {
 						console.log(eventObj.name + ' is here!');
 					}
 				});
 
-				MOS.countdown.add({
-					name: 'Weekend',
-					date: MOS.countdown.tgif(),
-					onEvent: function (eventObj) {
-						console.log(eventObj.name + ' is here!');
-					}
-				});
+
+				
+				// MOS.countdown.add({
+				// 	name: 'Weekend',
+				// 	date: MOS.countdown.tgif(),
+				// 	onEvent: function (eventObj) {
+				// 		console.log(eventObj.name + ' is here!');
+				// 	}
+				// });
 
 				MOS.countdown.start();
 
